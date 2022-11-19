@@ -1,12 +1,12 @@
 
+<h1>Book detail</h1>
 
 <% @books.each do |book| %>
 <div>
-
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>Title：<%= book.title %></p>
-  <p>Opinion：<%= book.body %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
+  <p><%= image_tag 'sample-author1.jpg' %></p>
+  <span><%= link_to book.title, book_path(book.id) %></span>
+  <p><%= book.body %></p>
+  <span><%= link_to book.user.name, book_path(book.id) %></span>
 </div>
 <% end %>
 
