@@ -1,2 +1,32 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+
+
+<% @books.each do |book| %>
+<div>
+
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>Title：<%= book.title %></p>
+  <p>Opinion：<%= book.body %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>New book</h1>
+  <%= form_with model: @book do |f| %>
+
+    <h4>Title</h4>
+      <%= f.text_field :title %>
+    <h4>Opinion</h4>
+      <%= f.text_area :body %><br>
+    <%= f.submit ' Create Book ' %>
+  <% end %>
