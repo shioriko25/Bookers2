@@ -1,4 +1,7 @@
 
+
+
+
 <div>
 <% if @book.errors.any? %>
   <%= @book.errors.count %>errors prohibited this obj from being saved:
@@ -21,8 +24,8 @@
 
 
 <div>
- <% if @book.user == current_user %>
-    <%= link_to " Edit ",  edit_book_path(@book.id) %>
+ <% if @user == current_user %>
+    <%= link_to " Edit ",edit_user_path(@user.id) %>
   <% end %>
 </div>
 
@@ -48,6 +51,5 @@
       <%= f.text_area :body %><br>
     <%= f.submit ' Create Book ' %>
   <% end %>
-  
-  
-  
+
+

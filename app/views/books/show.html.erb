@@ -4,7 +4,7 @@
   <p><%= @book.title %></p>
   <p><%= @book.body %></p>
   <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <span><%= link_to @book.user.name, user_path(@book.id) %></span>
+  <span><%= link_to @book.user.name, user_path(@user.id) %></span>
 
     <% if @book.user == current_user %>
     <%= link_to " Edit ",  edit_book_path(@book.id) %>
