@@ -1,12 +1,14 @@
-
+<h1>Book detail</h1>
 
 <div>
-  <p>Title：<%= @book.title %></p>
-  <p>Body：<%= @book.body %></p>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>ユーザーネーム：<%= @book.user.name %></p>
+  <p><%= @book.title %></p>
+  <p><%= @book.body %></p>
+  <p><%= image_tag 'sample-author1.jpg' %></p>
+  <span><%= link_to @book.user.name, user_path(@book.id) %></span>
     <% if @book.user == current_user %>
     <%= link_to " Destroy ", book_path(@book), method: :delete %>
   <% end %>
 
 </div>
+
+
