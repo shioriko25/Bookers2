@@ -1,0 +1,17 @@
+
+<!--左側：ログインユーザーの表示（テンプレート）-->
+
+
+<h1>User info</h1>
+<!-- ユーザーの詳細 user/show-->
+<div>
+  <%= image_tag user.get_profile_image(100,100) %>
+  <p>name <%= user.name %></p>
+  <p>introduction <%= user.introduction %></p>
+</div>
+
+<div>
+ <% if user == current_user %>
+    <%= link_to " Edit ",edit_user_path(user.id) %>
+  <% end %>
+</div>

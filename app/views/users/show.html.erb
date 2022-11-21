@@ -1,9 +1,13 @@
+
+<!--homeボタンマイページ-->
+
+<h1>aa</h1>
+
 <!-- ユーザーの詳細 -->
-<div>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <p>name <%= @user.name %></p>
-  <p>introduction <%= @user.introduction %></p>
-</div>
+<%= render 'books/list', user: @user %>
+
+<!--newbook/エラー文テンプレート-->
+<%= render 'books/book', book: @book %>
 
 <!-- ユーザーの投稿一覧 -->
 
@@ -11,7 +15,7 @@
 
 <% @books.each do |book| %>
 <div>
-   <p><%= image_tag book.user.get_profile_image(100,100) %></p>
+ <%= image_tag @user.get_profile_image(100,100) %>
   <span>Title<%= link_to book.title, book_path(book.id) %></span>
   <p>Opinion<%= book.body %></p>
 </div>

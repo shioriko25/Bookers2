@@ -1,3 +1,12 @@
+
+<!--ヘッターとフッター共通部分-->
+
+<div>
+  <%= flash[:notice] %>
+</div>
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -33,9 +42,18 @@
       <li>
         <%= link_to "   Log out ", destroy_user_session_path, method: :delete %>
       </li>
-      
+
     <% else %>
-    
+
+      <li>
+        <%= link_to '   Bookers ', root_path %>
+      </li>
+      <li>
+        <%= link_to '   --Home ',  root_path %>
+      </li>
+      <li>
+        <%= link_to "  About  ",  homes_about_path %>
+      </li>
       <li>
         <%= link_to "   Sign Up ", new_user_registration_path %>
       </li>
@@ -47,6 +65,8 @@
   <%= yield %>
 </body>
 </html>
+
+
 
 
 <footer>
