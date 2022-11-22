@@ -52,7 +52,7 @@ private
 
 
   def is_matching_login_user
-    user_id = params[:id].to_i
+    user_id = User.find(params[:id]).id
     login_user_id = current_user.id
     if(user_id != login_user_id)
       redirect_to books_path

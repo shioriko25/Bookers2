@@ -1,22 +1,50 @@
 
 <!--Booksボタン　Book一覧-->
 
+ <div>
+  <%= flash[:notice] %>
+  </div>
 
-<h1>a book</h1>
-
-<%= render 'list', user: @user %>
-<%= render 'book', book: @book %>
-
-
-<h1>Books</h1>
-
-<% @books.each do |book| %>
-<div>
-   <%= image_tag @user.get_profile_image(100,100) %>
-  <span>Title<%= link_to book.title, book_path(book.id) %></span>
-  <p>Opinion<%= book.body %></p>
+  <div>
+  <% if @book.errors.any? %>
+   <h3><%= @book.errors.count %>errors prohibited this obj from being saved:</h3>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+  <% end %>
 </div>
-<% end %>
 
 
-
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'list', user: @user %>
+        <%= render 'book', book: @book %>
+      </div>
+      <div class="col-md-8 offset-md-1">
+        <h2>Books</h2>
+          <table class="table table-hover table-inverse">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Title</th>
+                <th scope="col">Opinion</th>
+              </tr>
+          </thead>
+          <% @books.each do |book| %>
+            <tbody>
+              <tr>
+                <td> <%= image_tag @user.get_profile_image(100,100) %></td>
+                <td><span><%= link_to book.title, book_path(book.id) %></span></td>
+                <td><p><%= book.body %></p></td>
+              </tr>
+            </tbody>
+          <% end %>
+         </table>
+      </div>
+    </div>
+  </div>
+</main>

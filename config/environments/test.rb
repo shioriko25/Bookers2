@@ -44,7 +44,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :test
 
   # Print deprecation notices to the stderr.
-  config.active_support.deprecation = :stderr
+  config.active_support.deprecation = :silence
 
   # Raise exceptions for disallowed deprecations.
   config.active_support.disallowed_deprecation = :raise
@@ -57,4 +57,6 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+ 
 end

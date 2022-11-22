@@ -1,24 +1,38 @@
 
 <!--Usersの一覧-->
 
-<!-- ユーザーの詳細 -->
-<%= render 'books/list', user: @user %>
+ <div>
+  <%= flash[:notice] %>
+  </div>
 
-<!--newbook/エラー文テンプレート-->
-<%= render 'books/book', book: @book %>
-
-
-
-<!-- ユーザー一覧 -->
-
-<h1>Users</h1>
-
-<% @users.each do |user| %>
-<div>
-   <p>image<%= image_tag user.get_profile_image(100,100) %></p>
-  <p></p>name<%= user.name %></p>
- <span><%= link_to " Show " , user_path(user.id) %>  </span>
-</div>
-<% end %>
-
-
+<main>
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'books/list', user: @user %><!-- ユーザーの詳細 -->
+        <%= render 'books/book', book: @book %><!--newbook/エラー文テンプレート-->
+      </div>
+          <div class="col-md-8 offset-md-1">
+          <h2>Users</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">image</th>
+                  <th scope="col">name</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+                <% @users.each do |user| %>
+              <tbody>
+                <tr>
+                  <td><p><%= image_tag user.get_profile_image(100,100) %></p></td>
+                  <td><p><%= user.name %></p></td>
+                  <td><span><%= link_to " Show " , user_path(user.id) %>  </span></td>
+                </tr>
+              </tbody>
+                <% end %>
+            </table>
+           </div>
+    </div>
+  </div>
+</main>

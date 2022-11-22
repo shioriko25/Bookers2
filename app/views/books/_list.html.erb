@@ -2,16 +2,29 @@
 <!--左側：ログインユーザーの表示（テンプレート）-->
 
 
-<h1>User info</h1>
-<!-- ユーザーの詳細 user/show-->
-<div>
-  <%= image_tag user.get_profile_image(100,100) %>
-  <p>name <%= user.name %></p>
-  <p>introduction <%= user.introduction %></p>
+ 
+<h2>User info</h2>
+
+
+<tbody>
+  <table class="table table">
+    <p><%= image_tag user.get_profile_image(100,100) %></p>
+<tobody>
+  <tr>
+    <th scope="row"><p>name </p></th>
+    <th scope="row"><p> <%= user.name %></p></th>
+  </tr>
+</tobody>
+<tobody>
+  <tr>
+    <th  scope="row"><p>introduction</p></th>
+    <th  scope="row"><p> <%= user.introduction %></p></th>
+ </tr>
+</tobody>
+</table>
+
+<div type="button" >
+  <%= link_to edit_user_path(user.id), class:"btn btn-outline-secondary  btn-block" do %><i class="fas fa-user-cog"></i><% end %>
 </div>
 
-<div>
- <% if user == current_user %>
-    <%= link_to " Edit ",edit_user_path(user.id) %>
-  <% end %>
-</div>
+

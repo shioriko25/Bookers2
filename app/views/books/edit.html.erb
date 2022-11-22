@@ -1,37 +1,39 @@
 
 <!--マイページのbookの編集ページ(homeボタン→title→edit)-->
 
-<h2>Editing Book</h2>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+        <% if @book.errors.any? %>
+          <%= @book.errors.count %>errors prohibited this obj from being saved:
+            <ul>
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+        <% end %>
 
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>errors prohibited this obj from being saved:
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-
-
-
-<%= form_with model: @book do |f| %>
-
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-
-  <h4>Opinion</h4>
-  <%= f.text_area :body %><br>
-
-  <%= f.submit 'Update Book' %>
-
-<% end %>
-
-
-<span><%= link_to " Show " , book_path(@book.id) %>  </span>
-|
-<span><%= link_to " Back " , books_path(@book.id) %>  </span>
+        <%= form_with model: @book do |f| %>
+          <div class="form-group">
+            <label for="inputImage">Title</label>
+              <%= f.text_field :title ,class:"form-control book_title"  %>
+          </div>
+          <div class="form-group">
+            <label for="inputImage">Opinion</label>
+              <%= f.text_area :body ,class:"form-control book_body" %>
+          </div>
+          <div class="form-group">
+            <label for="inputImage"> <%= f.submit 'Update Book' ,class:"btn btn-success"  %></label>
+          </div>
+        <% end %>
+            <span><%= link_to " Show " , book_path(@book.id) %>  </span>
+            |
+            <span><%= link_to " Back " , books_path(@book.id) %>  </span>
+    </div>
+  </div>
+</div>
 
 

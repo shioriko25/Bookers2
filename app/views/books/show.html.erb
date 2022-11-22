@@ -1,24 +1,37 @@
 
 <!--マイページ内のbookの詳細(homeボタン→title)-->
-
-<h1>a1</h1>
-
-<%= render 'list', user: @user %>
-<%= render 'book', book: @books %>
-
-<h1>Book detail!</h1>
-
 <div>
-  <span><%= link_to @book.title, book_path(@book.id) %></span>
-  <p><%= @book.body %></p>
-  <p><%= image_tag @book.user.get_profile_image(100,100) %></p>
-  <span><%= link_to @book.user.name, user_path(@user.id) %></span>
-
-    <% if @book.user == current_user %>
-    <%= link_to " Edit ",  edit_book_path(@book.id) %>
-    <%= link_to " Destroy ", book_path(@book), method: :delete,"data-confirm" => "本当に消しますか？" %>
-  <% end %>
-
-</div>
+  <%= flash[:notice] %>
+  </div>
 
 
+
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <%= render 'list', user: @user %><!-- ユーザーの詳細 -->
+        <%= render 'book', book: @books %><!--newbook/エラー文テンプレート-->
+      </div>
+        <div class="col-md-8 offset-md-1">
+          <h2>Book detail!</h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><p><%= image_tag @book.user.get_profile_image(100,100) %></p>
+                    <span><%= link_to @book.user.name, user_path(@user.id) %></span>
+                  </td>
+                  <td> <span><%= link_to @book.title, book_path(@book.id) %></span></td>
+                  <td><p><%= @book.body %></p></td>
+                  <% if @book.user == current_user %>
+                    <td> <span><%= link_to " Edit ",  edit_book_path(@book.id) ,class:"btn btn-success" %></span></td>
+                    <td> <span><%= link_to " Destroy ", book_path(@book),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %></span></td>
+                  <% end %>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+</main>
+    

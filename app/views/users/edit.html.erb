@@ -1,31 +1,44 @@
 
 <!--ユーザーの編集ページ-->
 
-<h2>User info</h2>
 
 
-<% if @user.errors.any? %>
-  <%= @user.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @user.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h2>User info</h2>
+      
+        <% if @user.errors.any? %>
+          <%= @user.errors.count %>error prohibited this obj from being saved:
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+        <% end %>
+
+        <%= form_with model: @user do |f| %>
+        
+          <div class="form-group">
+            <label for="user_name">Name</label>
+             <%= f.text_field :name ,class:"form-control name" %><br>
+          </div>
+          <div class="form-group">
+            <label for="inputImage">Image</label>
+            <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" ,class:"form-control-file user_image" %>
+          </div>
+          <div class="form-group">
+            <label for="user_introduction">Introduction</label>
+            <%= f.text_area :introduction ,class:"form-control introduction" %><br>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Update User' ,class:"btn btn-secondary" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>   
 
 
-<%= form_with model: @user do |f| %>
-
-  <h4>Name</h4>
-  <%= f.text_field :name %><br>
-
-   <label for="inputImage">Image</label>
-  <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-
-  <h4>Introduction</h4>
-  <%= f.text_area :introduction %><br>
-
-  <%= f.submit 'Update User' %>
-
-<% end %>
 
