@@ -1,9 +1,7 @@
 
 <!--Booksボタン　Book一覧-->
 
- <div>
-  <%= flash[:notice] %>
-  </div>
+
 
   <div>
   <% if @book.errors.any? %>
@@ -18,6 +16,7 @@
 
 
 <main>
+<p><%= flash[:notice] %></p>
   <div class="container px-5 px-sm-0">
     <div class="row">
       <div class="col-md-3">
@@ -37,7 +36,7 @@
           <% @books.each do |book| %>
             <tbody>
               <tr>
-                <td> <%= image_tag @user.get_profile_image(100,100) %></td>
+                <td><span><%= link_to user_path(book.user.id) do %><%= image_tag book.user.get_profile_image(100,100) %><% end %></span></td> <!--link_toを入れる-->
                 <td><span><%= link_to book.title, book_path(book.id) %></span></td>
                 <td><p><%= book.body %></p></td>
               </tr>
@@ -48,3 +47,4 @@
     </div>
   </div>
 </main>
+

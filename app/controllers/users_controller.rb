@@ -37,7 +37,7 @@ end
       @user=User.find(params[:id])
   if  @user.update(user_params)
       flash[:notice] = "You have updated user successfully."
-      redirect_to users_path
+      redirect_to user_path(@user.id)
   else
     render :edit
   end
@@ -55,7 +55,7 @@ private
     user_id = User.find(params[:id]).id
     login_user_id = current_user.id
     if(user_id != login_user_id)
-      redirect_to books_path
+      redirect_to user_path(current_user.id)
     end
   end
 
