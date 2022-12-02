@@ -31,6 +31,7 @@
                 <th scope="col"></th>
                 <th scope="col">Title</th>
                 <th scope="col">Opinion</th>
+                <th scope="col"></th>
               </tr>
           </thead>
           <% @books.each do |book| %>
@@ -39,6 +40,18 @@
                 <td><span><%= link_to user_path(book.user.id) do %><%= image_tag book.user.get_profile_image(100,100) %><% end %></span></td> <!--link_toを入れる-->
                 <td><span><%= link_to book.title, book_path(book.id) %></span></td>
                 <td><p><%= book.body %></p></td>
+                <% if @book.favorited_by?(current_user) %>
+                  <td><p><%= link_to book_favorites_path(@book),methood: :delete do %>
+                    🤍<%= @book.favorite.count %>いいね
+                      <% end %>
+                  </p></td>
+                    <% else %>
+                  <td><p><%= link_to book_favorites_path(@book),method: :post do %>
+                    ♡<%= @book.favorites.count %>いいね
+                     <% end %>
+                  </p></td>
+                <% end %>
+                <td> <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p></td>
               </tr>
             </tbody>
           <% end %>
