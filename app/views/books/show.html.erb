@@ -36,8 +36,8 @@
                   <% end %>
                    <p><%= link_to " #{@book.book_comments.count} コメント", book_path(@book.id) %></p>
                   <% if @book.user == current_user %>
-                    <td> <span><%= link_to " Edit ",  edit_book_path(@book.id) ,class:"btn btn-success" %></span></td>
-                    <td> <span><%= link_to " Destroy ", book_path(@book),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %></span></td>
+                    <td> <%= link_to " Edit ",  edit_book_path(@book.id) ,class:"btn btn-success" %></span></td>
+                    <td> <span><%= link_to " Destroy ", book_path(@book),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %></td>
                   <% end %>
                 </tr>
               </tbody>
@@ -48,6 +48,9 @@
                     <p><%= image_tag book_comment.user.get_profile_image(100,100) %></p>
                     <%= book_comment.user.name %>
                     <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
+                    <% if book_comment.user == current_user %>
+                     <%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
+                    <% end %>
                   <% end %>
                 </div>
                 <div>
