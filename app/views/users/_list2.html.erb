@@ -1,8 +1,3 @@
-
-<!--左側：ログインユーザーの表示（テンプレート）-->
-
-
-
 <h2>User info</h2>
 
 
@@ -24,21 +19,15 @@
 <tobody>
   <tr>
     <th  scope="row">follows</th>
-    <th  scope="row"> <%= user.followings.count %></th>
+    <th  scope="row"><span><%= link_to user.followings.count, user_followings_path(user.id) %></span></th>
   </tr>
 </tobody>
 <tobody>
   <tr>
     <th  scope="row">followers</th>
-    <th  scope="row"><%= user.followers.count %></th>
+    <th  scope="row"><span><%= link_to user.followers.count,  user_followers_path(user.id) %></span></th>
   </tr>
 </tobody>
 </table>
-
-
-
-<div type="button" >
-  <%= link_to edit_user_path(user.id), class:"btn btn-outline-secondary  btn-block" do %><i class="fas fa-user-cog"></i><% end %>
-</div>
 
 
