@@ -7,9 +7,7 @@
     <div class="row">
 
 
-<% if @users.exists? %>
-  <% @users.each do |user| %>
-    <table class="table">
+     <table class="table">
       <thead>
         <tr>
           <th cope="col">image</th>
@@ -19,6 +17,9 @@
           <th cope="col"></th>
         </tr>
       </thead>
+
+      <% if @users.exists? %>
+      <% @users.each do |user| %>
       <tbody>
         <tr>
          <td><span><%= link_to user_path(user.id) do %><%= image_tag user.get_profile_image(100,100) %><% end %></span></td>
@@ -28,8 +29,8 @@
           <td><span><%= link_to " Show " , user_path(user.id) %>  </span></td>
         </tr>
       </tbody>
+       <% end %>
     </table>
-  <% end %>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
