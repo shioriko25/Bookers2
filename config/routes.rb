@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'homes#about'
   root to: 'homes#top'
+  get "search" => "searches#search"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -16,8 +17,8 @@ Rails.application.routes.draw do
    end
 
    resources :users, only: [:show, :edit, :index, :update, :create]
-   
-   
+
+
    # ネストさせる
   resources :users do
     resource :relationships, only: [:create, :destroy]
