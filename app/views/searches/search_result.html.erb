@@ -3,19 +3,38 @@
 <table class="table table-hover table-inverse">
   <!--検索対象モデルがUserの時 -->
   <% if @range == "User" %>
+   <thead>
+     <tr>
+       <th scope="col">image</th>
+       <th scope="col">name</th>
+       <th scope="col"></th>
+     </tr>
+   </thead>
+   <% @users.each do |user| %>
     <tbody>
-      <% @users.each do |user| %>
         <tr>
+          <td><span><%= link_to user_path(user.id) do %><%= image_tag user.get_profile_image(100,100) %><% end %></span></td>
           <td><%= user.name %></td>
+          <td>フォロー数: <%= user.followings.count %></td>
+          <td>フォロワー数: <%= user.followers.count %></td>
+          <td><span><%= link_to " Show " , user_path(user.id) %>  </span></td>
         </tr>
       <% end %>
     </tbody>
   <% else %>
     <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+     <thead>
+     <tr>
+       <th scope="col"></th>
+       <th scope="col">Title</th>
+       <th scope="col">Opinion</th>
+     </tr>
+   </thead>
     <tbody>
-      <% @books.each do |book| %>
         <tr>
-          <td><%= book.title %></td>
+        <% @books.each do |book| %>
+          <td><span><%= link_to user_path(book.user.id) do %><%= image_tag book.user.get_profile_image(100,100) %><% end %></span></td> 
+          <td><span><%= link_to book.title, book_path(book.id) %></span></td>
           <td><%= book.body %></td>
         </tr>
       <% end %>
