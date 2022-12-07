@@ -40,17 +40,11 @@
                 <td><span><%= link_to user_path(book.user.id) do %><%= image_tag book.user.get_profile_image(100,100) %><% end %></span></td> <!--link_toを入れる-->
                 <td><span><%= link_to book.title, book_path(book.id) %></span></td>
                 <td><p><%= book.body %></p></td>
-                <% if book.favorited_by?(current_user) %>
-                  <td><%= link_to book_favorites_path(book.id), method: :delete do %>
-                    🤍<%= book.favorites.count %>いいね
-                      <% end %>
-                  </td>
-                    <% else %>
-                  <td><%= link_to book_favorites_path(book.id),method: :post do %>
-                    ♡<%= book.favorites.count %>いいね
-                     <% end %>
-                  </td>
-                <% end %>
+                
+                <td id="favorite_buttons_<%= book.id %>">
+                  <%= render "favorites/favorites", book: book %>
+              　</td>
+              　
                 <td> <p><%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %></p></td>
               </tr>
             </tbody>
