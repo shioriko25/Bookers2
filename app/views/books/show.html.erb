@@ -22,12 +22,10 @@
                   </td>
                   <td> <span><%= link_to @book.title, book_path(@book.id) %></span></td>
                   <td><p><%= @book.body %></p></td>
-
-
                   <td id="favorite_buttons_<%= @book.id %>">
                   <%= render "favorites/favorites", book: @book %>
-                　</td>
-                　<td>コメント数：<%= @book.book_comments.count %></td>
+                  </td>
+                  <td>コメント数：<%= @book.book_comments.count %></td>
                   <% if @book.user == current_user %>
                     <td> <%= link_to " Edit ",  edit_book_path(@book.id) ,class:"btn btn-success" %></td>
                     <td> <%= link_to " Destroy ", book_path(@book),class:"btn btn-danger", method: :delete,"data-confirm" => "本当に消しますか？" %></td>
@@ -36,22 +34,16 @@
               </tbody>
             </table>
             <div>
-            <table>
-              <tbody>
-                
-                <tbody id="comment">
-                 <%= render 'book_comments/comment', book: @book %>
-                  
-                </tbody>
-              </table>
+
+            <table class="book_comments">
+                 <%= render 'book_comments/index', book: @book %>
+            </table>
                 </div>
-                <div>
-                  <%= form_with model: [@book, @book_comment] do |f| %>
-                    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに", class: "w-100"  %>
+
+                  <%= form_with model: [@book, @book_comment], local: false do |f| %>
+                    <%= f.text_area :comment, placeholder: "コメントをここに", class: "w-100"  %>
                     <%= f.submit "送信する" %>
                   <% end %>
-                </div>
-                </tr>
 
         </div>
     </div>
